@@ -9,6 +9,7 @@ const userController = new UserController();
 userRoutes.get("/usuario", userController.index);
 userRoutes.get("/usuario/:id", userController.show);
 userRoutes.post("/usuario", userController.create);
+userRoutes.post("/usuario/login", userController.login);
 userRoutes.patch("/usuario/:id", userController.update);
 userRoutes.delete("/usuario/:id", userController.delete);
 
