@@ -1,24 +1,23 @@
 import { Document, model, Schema } from "mongoose";
-import User from "./user.model";
 
 interface FeedbackDoc extends Document {
-  creator: typeof User;
-  subject: typeof User;
-  dateTime: Date;
-  improve: [String];
-  sustain: [String];
-  suggestions: [String];
+  creator: string;
+  subject: string;
+  feedbackDate: Date;
+  improvePoints: string;
+  keepPoints: string;
+  suggestions: string;
   finalFeedback: String;
 }
 
 const feedbackSchema = new Schema(
   {
-    creator: { type: Schema.Types.ObjectId, ref: "user" },
-    subject: { type: Schema.Types.ObjectId, ref: "user" },
-    dateTime: Date,
-    improve: [String],
-    sustain: [String],
-    suggestions: [String],
+    creator: String,
+    subject: String,
+    feedbackDate: Date,
+    improvePoints: String,
+    keepPoints: String,
+    suggestions: String,
     finalFeedback: String,
   },
   { timestamps: true }

@@ -74,21 +74,38 @@ class FeedbackController {
     const feedback = new Feedback({
       creator: request.body.creator,
       subject: request.body.subject,
-      dateTime: Date.now(),
-      improve: request.body.improve,
-      sustain: request.body.sustain,
+      feedbackDate: request.body.feedbackDate,
+      improvePoints: request.body.improvePoints,
+      keepPoints: request.body.keepPoints,
       suggestions: request.body.suggestions,
       finalFeedback: request.body.finalFeedback,
     });
 
     feedback
       .save()
-      .then((data) => response.send(data))
+      .then((data) => response.send({ message: "Feedback criado com sucesso!" }))
       .catch((err) => {
         response.status(500).send({
           message: err.message || "Erro desconhecido ao criar feedback!",
         });
       });
+  }
+
+  async listByCreator(request: Request, response: Response) {
+    if (!request.body) {
+      return response.status(400).send({
+        message: "Dados para busca não podem ser nulos",
+      });
+    }
+
+    Feedback.find({ creator: request.params.idCreator }, (err, data) => {
+      if (err) {
+        return response.status(500).send({
+          message: err.message || "Erro desconhecido ao listar feedbacks!",
+        });
+      }
+      return response.send(data);
+    });
   }
 }
 

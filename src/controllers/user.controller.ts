@@ -97,17 +97,13 @@ class UserController {
       return;
     }
 
-    console.log(request.body);
-
     const user = await User.findOne({ username: request.body.username }, (err, user: any) => {
-      console.log("error", err);
       if (err) {
         return response.status(400).send({ message: err.message || "Usuário ou senha incorretos!" });
       }
       return user;
     });
 
-    console.log(typeof user);
     if (user == null) {
       return response.status(400).send({ message: "Usuário ou senha incorretos!" });
     }
