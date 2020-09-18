@@ -1,4 +1,4 @@
-# viasoft-js-back
+# feedback-backend
 
 Para rodar o back-end é necessário configurar a porta do servidor que será utilizada.
 Por padrão a porta é a "8080", porém pode ser mudado com uma variável de ambiente chamada "PORT".
